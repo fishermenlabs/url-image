@@ -80,6 +80,8 @@ public struct URLImageOptions {
     public var cachePolicy: CachePolicy
 
     public var loadOptions: LoadOptions
+    
+    public var loadScheduler: AnyScheduler
 
     public var urlRequestConfiguration: Download.URLRequestConfiguration
 
@@ -90,12 +92,14 @@ public struct URLImageOptions {
                 expireAfter expiryInterval: TimeInterval? = URLImageService.shared.defaultOptions.expiryInterval,
                 cachePolicy: CachePolicy = URLImageService.shared.defaultOptions.cachePolicy,
                 load loadOptions: LoadOptions = URLImageService.shared.defaultOptions.loadOptions,
+                scheduler loadScheduler: AnyScheduler = AnyScheduler(RunLoop.main),
                 urlRequestConfiguration: Download.URLRequestConfiguration = URLImageService.shared.defaultOptions.urlRequestConfiguration,
                 maxPixelSize: CGSize? = URLImageService.shared.defaultOptions.maxPixelSize) {
         self.identifier = identifier
         self.expiryInterval = expiryInterval
         self.cachePolicy = cachePolicy
         self.loadOptions = loadOptions
+        self.loadScheduler = loadScheduler
         self.urlRequestConfiguration = urlRequestConfiguration
         self.maxPixelSize = maxPixelSize
     }
